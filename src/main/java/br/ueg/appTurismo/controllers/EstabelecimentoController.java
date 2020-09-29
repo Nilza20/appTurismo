@@ -1,7 +1,6 @@
 package br.ueg.appTurismo.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,14 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ueg.appTurismo.models.Estabelecimento;
 import br.ueg.appTurismo.services.EstabelecimentoServices;
+import io.swagger.annotations.ApiOperation;
 
 
 @RestController
+@RequestMapping ("/estabelecimentos")
 public class EstabelecimentoController {
+	
 	@Autowired
 	private EstabelecimentoServices estabelecimentoServices;
 	
@@ -25,22 +29,27 @@ public class EstabelecimentoController {
 		this.estabelecimentoServices = estabelecimentoServices;
 	}
 	
-	@GetMapping("/estabelecimento")
+	@GetMapping
+	@ResponseBody
+	@ApiOperation(value = "Método para listar todas os estabelecimentos na cidade de Shego.")
 	public List<Estabelecimento> listEstabelecimento(){
 		return estabelecimentoServices.listEstabelecimento();
 	}
 	
-	@PostMapping("/estabelecimento")
+	@PostMapping
+	@ResponseBody
 	public Estabelecimento saveEstabelecimento(@RequestBody Estabelecimento estabelecimento) {
 		return estabelecimentoServices.saveEstabelecimento(estabelecimento);
 	}
 	
-	@GetMapping("/estabelecimento/{id}")
-	public Optional<Estabelecimento> findById(@PathVariable long id) { 
+	@GetMapping("/{id}")
+	@ResponseBody
+	public Estabelecimento findById(@PathVariable long id) { 
 		return estabelecimentoServices.findEstabelecimentoById(id);
 	}
 	
-	@DeleteMapping("/estabelecimento/{id}")
+	@DeleteMapping("/{id}")
+	@ResponseBody
 	public void deleteById(@PathVariable long id) {
 		estabelecimentoServices.deleteEstabelecimento(id);
 	}

@@ -31,7 +31,9 @@ public class AtracaoService {
 		atracaoRepository.deleteById(id);
 	}
 	
-	public Optional<Atracao> findAtracaoById(Long id){
-		return atracaoRepository.findById(id);
+	public Atracao findById(Long id) {
+		Optional<Atracao> optAtracoes = atracaoRepository.findById(id);
+		return optAtracoes.get();
 	}
+	
 }

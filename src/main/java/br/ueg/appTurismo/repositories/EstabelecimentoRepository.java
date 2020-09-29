@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.ueg.appTurismo.models.Estabelecimento;
 
 @Repository
-public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento, Long> {
+public interface EstabelecimentoRepository extends JpaRepository<Estabelecimento, Long>{
 
 }

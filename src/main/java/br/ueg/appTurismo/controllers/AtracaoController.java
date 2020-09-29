@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
+import io.swagger.annotations.ApiOperation;
 
 import br.ueg.appTurismo.models.Atracao;
 import br.ueg.appTurismo.services.AtracaoService;
 
 @RestController
+@RequestMapping ("/atracoes")
 public class AtracaoController {
 	
 	@Autowired
@@ -25,23 +29,33 @@ public class AtracaoController {
 		this.atracaoService = atracaoService;
 	}
 	
-	@GetMapping("/atracao")
+	
+	@GetMapping
+	@ResponseBody
+	@ApiOperation(value = "Método para listar todas as atrações disponivel na cidade de Shego.")
 	public List<Atracao> listAtracao(){
 		return atracaoService.listAtracao();
 	}
 	
-	@PostMapping("/atracao")
+	@PostMapping
+	@ResponseBody
+	@ApiOperation(value ="salva um atrações, não possui campo obrigatório.")
 	public Atracao saveAtracao(@RequestBody Atracao atracao) {
 		return atracaoService.saveAtracao(atracao);
 	}
 	
-	@GetMapping("/atracao/{id}")
-	public Optional<Atracao> findById(@PathVariable long id) { 
-		return atracaoService.findAtracaoById(id);
+	@GetMapping("/{id}")
+	@ResponseBody
+	public Atracao findById(@PathVariable(value = "id") Long id) {
+		
+		return atracaoService.findById(id);
 	}
+
 	
-	@DeleteMapping("/atracao/{id}")
+	@DeleteMapping("/{id}")
+	@ResponseBody
 	public void deleteById(@PathVariable long id) {
 		atracaoService.deleteAtracao(id);
 	}
+	
 }

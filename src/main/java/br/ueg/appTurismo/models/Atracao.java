@@ -30,7 +30,11 @@ public class Atracao {
 	private List<AtracaoCategoria> categorias;
 	
 	public Atracao() {
-		
+	}
+	
+	public Atracao(long id, String nome) {
+		this.id = id;
+		this.nome = nome;
 	}
 
 	public Long getId() {

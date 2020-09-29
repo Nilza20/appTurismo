@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.ueg.appTurismo.models.Atracao;
 
 @Repository
-public interface AtracaoRepository extends JpaRepository<Atracao, Long> {
+public interface AtracaoRepository extends JpaRepository<Atracao, Long>{
 
 }

@@ -34,11 +34,15 @@ public class Estabelecimento {
 	@Column
 	private List<EstabelecimentoCategoria> categorias;
 	
-	
 	public Estabelecimento() {
-		super();
 	}
-
+	
+	public Estabelecimento(long id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+	
+	
 
 	public Long getId() {
 		return id;

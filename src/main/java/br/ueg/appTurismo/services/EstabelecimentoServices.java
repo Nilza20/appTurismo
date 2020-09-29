@@ -32,8 +32,10 @@ public class EstabelecimentoServices {
 		estabelecimentoRepository.deleteById(id);
 	}
 	
-	public Optional<Estabelecimento> findEstabelecimentoById(Long id){
-		return estabelecimentoRepository.findById(id);
+	
+	public Estabelecimento findEstabelecimentoById(Long id) {
+		Optional<Estabelecimento> optEstabelecimento = estabelecimentoRepository.findById(id);
+		return optEstabelecimento.get();
 	}
 }
 
